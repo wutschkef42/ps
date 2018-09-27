@@ -53,3 +53,16 @@ int	is_sorted(t_stack *s)
 		return (0);
 	return (is_sorted(s->next));
 }
+
+int		stack_size(t_stack *s)
+{
+	int	size;
+
+	size = 0;
+	while (s)
+	{
+		s = s->next;
+		size++;
+	}
+	return (size);
+}

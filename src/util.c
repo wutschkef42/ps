@@ -1,5 +1,8 @@
 
+#include "libft.h"
 #include "push_swap.h"
+
+
 
 void	exit_error()
 {
@@ -8,6 +11,11 @@ void	exit_error()
 
 }
 
+
+int	max(int a, int b)
+{
+	return (a > b ? a : b);
+}
 
 int	is_nan(char *s)
 {
@@ -27,7 +35,7 @@ int	is_nan(char *s)
 
 int	is_int_overflow(char *s)
 {
-	if (atol(s) > INT_MAX || atol(s) < INT_MIN)
+	if (ft_atol(s) > INT_MAX || ft_atol(s) < INT_MIN)
 		return (1);	
 	return(0);
 }
@@ -41,7 +49,6 @@ int	has_duplicates(t_stack *s)
 	p = s;
 	while (p)
 	{
-
 		while (s)
 		{
 			if (p != s && p->val == s->val)

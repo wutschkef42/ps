@@ -26,11 +26,34 @@
 
 #define VAL(x)	x->val
 
+enum				e_strategy
+{
+	UPUP = 1,
+	UPDOWN,
+	DOWNUP,
+	DOWNDOWN
+};
+
+
 typedef struct	s_stack
 {
-	int		val;
+	int				val;
 	struct s_stack	*next;
-}		t_stack;
+}				t_stack;
+
+typedef struct	s_next_op
+{
+	t_stack	*cur_a;
+	t_stack	*cur_b;
+	int		size_a;
+	int		size_b;
+	int		no_top_a;
+	int		no_top_b;
+	int		no_bottom_a;
+	int		no_bottom_b;
+	int		strategy;
+	int		cost;
+}				t_next_op;
 
 
 /* stack.c */
@@ -40,6 +63,7 @@ void	push(t_stack **stack, t_stack *new);
 t_stack	*pop(t_stack **stack);
 void	print_stack(t_stack *s);
 int		is_sorted(t_stack *s);
+int		stack_size(t_stack *s);
 
 
 /* util.c */
@@ -47,7 +71,7 @@ void	exit_error();
 int		is_nan(char *s);
 int		is_int_overflow(char *s);
 int		has_duplicates(t_stack *s);
-
+int		max(int a, int b);
 
 /* exec_op.c */
 void	execute_op(t_stack **a, t_stack **b, char *buffer);
@@ -68,5 +92,12 @@ void	op_rev_rotate_both(t_stack **a, t_stack **b);
 
 /* read_input.c */
 t_stack	*read_input(int ac, char **av);
+
+/* calc_cost.c */
+void	calc_cost(t_next_op *next_op);
+
+/* exec_next_op.c */
+void	exec_next_op(t_stack **a, t_stack **b, t_next_op next_op);
+
 
 #endif
