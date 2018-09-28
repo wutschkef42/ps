@@ -94,7 +94,7 @@ void	op_rev_rotate_both(t_stack **a, t_stack **b);
 t_stack	*read_input(int ac, char **av);
 
 /* calc_cost.c */
-void	calc_cost(t_next_op *next_op);
+int	calc_cost(t_next_op *next_op);
 
 /* exec_next_op.c */
 void	exec_next_op(t_stack **a, t_stack **b, t_next_op next_op);
