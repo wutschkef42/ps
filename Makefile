@@ -30,7 +30,8 @@ SRC_CHECKER	= checker.c
 
 SRC_PS		= push_swap.c \
 				calc_cost.c \
-				exec_next_op.c
+				exec_next_op.c \
+				opcodes.c
 			  
 
 OBJ_SHARED 	= $(addprefix $(OBJ_DIR_SHARED)/, $(SRC_SHARED:.c=.o))

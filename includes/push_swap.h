@@ -24,6 +24,8 @@
 #define RRB	"rrb"
 #define RRR	"rrr"
 
+#define BUFSIZE 0xFFFF
+
 #define VAL(x)	x->val
 
 enum				e_strategy
@@ -45,6 +47,8 @@ typedef struct	s_next_op
 {
 	t_stack	*cur_a;
 	t_stack	*cur_b;
+	t_stack	*min_a;
+	t_stack	*min_b;
 	int		size_a;
 	int		size_b;
 	int		no_top_a;
@@ -55,6 +59,12 @@ typedef struct	s_next_op
 	int		cost;
 }				t_next_op;
 
+
+typedef struct 	s_opcodes
+{
+	char	buf[BUFSIZE];
+	int		i;
+}				t_opcodes;
 
 /* stack.c */
 
@@ -99,5 +109,7 @@ int	calc_cost(t_next_op *next_op);
 /* exec_next_op.c */
 void	exec_next_op(t_stack **a, t_stack **b, t_next_op next_op);
 
+/* opcodes.c */
+void    add_opcode(t_opcodes *opcodes, char *op);
 
 #endif

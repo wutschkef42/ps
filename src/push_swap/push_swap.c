@@ -19,14 +19,13 @@ t_stack	*get_min_b(t_stack **b, int to_insert)
 	t_stack	*p;
 
 	min = INT_MAX;
-	p = *b;
+	p = NULL;
 	while (*b)
 	{
 		if ((*b)->val < min && (*b)->val > to_insert)
 		{
 
 			p = *b;
-			printf("$$$$%p\n", p);
 			min = (*b)->val;
 		}
 		b = &((*b)->next);
@@ -34,6 +33,27 @@ t_stack	*get_min_b(t_stack **b, int to_insert)
 
 	return (p);
 }
+
+t_stack	*get_max_a(t_stack **a)
+{
+	t_stack	*cur;
+	t_stack	*max;
+	int		n;
+
+	n = INT_MIN;
+	cur = *a;
+	while (cur)
+	{
+		if (cur->val > n)
+		{
+			max = cur;
+			n = cur->val;
+		}
+		cur = cur->next;
+	}
+	return (max);
+}
+
 
 t_stack	*get_index_b(t_stack **b, int val)
 {
@@ -75,6 +95,23 @@ int		count_bottom(t_stack *first, t_stack *cur)
 	return (count);
 }
 
+void	rotate_max_to_top(t_stack **a)
+{
+	int	nrot;
+	int	i;
+
+	nrot = count_top(*a, get_max_a(a));
+	i = 0;
+	while (i < nrot)
+	{
+		op_rotate(a);
+		printf(RA);
+		printf("\n");
+		i++;
+	}
+}
+
+
 void	calc_next_op(t_stack **a, t_stack **b, t_next_op *next_op)
 {
 	t_stack	*cur_a;
@@ -84,60 +121,49 @@ void	calc_next_op(t_stack **a, t_stack **b, t_next_op *next_op)
 	while (cur_a)
 	{
 		cur_b = get_index_b(b, cur_a->val);
-		printf("cur_b: %p\n", cur_b);
-		
-
-		// no_top_a = cur_a - first_a = number of elements in stack a that are on top of cur_a
-		// no_top_b = cur_b - first_b = number of elements in stack b that are on top of cur_b
-		// no_bottom_a = size_a - no_top_a - 1 = number of elements in stack a that are under cur_a
-		// no_bottom_b = size_b - no_top_b - 1 = number of elements in stack b that are under cur_b
-		
-		printf("top_a: %d, cur_a: %d, top_b: %d, cur_b: %d\n", (*a)->val, cur_a->val, (*b)->val, cur_b->val);
 		next_op->no_top_a = count_top(*a, cur_a);
 		next_op->no_top_b = count_top(*b, cur_b);
 		next_op->no_bottom_a = next_op->size_a - next_op->no_top_a - 1;
 		next_op->no_bottom_b = next_op->size_b - next_op->no_top_b - 1;
 		if (calc_cost(next_op))
 		{
-			printf("ALARM\n");
 			next_op->cur_a = cur_a;
 			next_op->cur_b = cur_b;	
 		}
 		cur_a = cur_a->next;
-//		ft_printf("calc_next_op\n");
 	}
 }
+
 
 
 void	solve(t_stack **a, t_stack **b)
 {
 	t_next_op	next_op;
+	t_opcodes	opcodes;
 
 	op_push(b, a);
+	opcodes.i = 0;
+	add_opcode(&opcodes, "pb\n");
+	printf("pb\n");
 	while (*a)
 	{
-//		ft_printf("solve loop a\n");
 		init_next_op(*a, *b, &next_op);
 		calc_next_op(a, b, &next_op);
-		printf("before next op:\n");
-		print_stack(*a);
-		print_stack(*b);
 		next_op.no_top_a = count_top(*a, next_op.cur_a);
 		next_op.no_top_b = count_top(*b, next_op.cur_b);
 		next_op.no_bottom_a = next_op.size_a - next_op.no_top_a - 1;
 		next_op.no_bottom_b = next_op.size_b - next_op.no_top_b - 1;
 		exec_next_op(a, b, next_op); // remove one element from a
-		printf("after next op:\n");
-		print_stack(*a);
-		print_stack(*b);
-
 	}
 	while (*b)
 	{
-//		ft_printf("solve loop b\n");
 		op_push(a, b);
 		printf("pa\n");
 	}
+	rotate_max_to_top(a);
+	ft_printf("----\n");
+	ft_printf("%s", opcodes.buf);
+	
 }
 
 
@@ -151,7 +177,6 @@ int	main(int ac, char **av)
 	if (!(a = read_input(ac, av)))
 		return (0);
 	solve(&a, &b);
-	printf("end result stack a\n");
-	print_stack(a);
+//	print_stack(a);
 	return (0);
 }
