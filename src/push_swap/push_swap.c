@@ -13,27 +13,6 @@ void	init_next_op(t_stack *a, t_stack *b, t_next_op *next_op)
 	next_op->cost = INT_MAX;
 }
 
-t_stack	*get_min_b(t_stack **b, int to_insert)
-{
-	int		min;
-	t_stack	*p;
-
-	min = INT_MAX;
-	p = NULL;
-	while (*b)
-	{
-		if ((*b)->val < min && (*b)->val > to_insert)
-		{
-
-			p = *b;
-			min = (*b)->val;
-		}
-		b = &((*b)->next);
-	}
-
-	return (p);
-}
-
 t_stack	*get_max_a(t_stack **a)
 {
 	t_stack	*cur;
@@ -55,13 +34,37 @@ t_stack	*get_max_a(t_stack **a)
 }
 
 
+// HERE we want to get the biggest element in b thats smaller than what we want to insert
+t_stack	*get_min_b(t_stack **b, int to_insert)
+{
+	int		min;
+	t_stack	*p;
+
+	min = INT_MAX;
+	p = NULL;
+	while (*b)
+	{
+		if ((*b)->val < min && (*b)->val > to_insert)
+		{
+
+			p = *b;
+			min = (*b)->val;
+		}
+		b = &((*b)->next);
+	}
+
+	return (p);
+}
+
+
+
 t_stack	*get_index_b(t_stack **b, int val)
 {
 		
 	if (get_min_b(b, val) == NULL)
 		return (get_min_b(b, INT_MIN)); /* the element we want to insert is bigger or smaller than ALL elements in b */
 	else
-		return (get_min_b(b, val));  /* there is an element in b thats bigger than what we want to insert */
+		return (get_min_b(b, val));  /* there is an element in b thats bigger than what we want to insert */ /* there is an element in b thats smaller than what we want to insert, we want the smallest element in b thats SMALLER than what we want to insert */
 
 }
 
@@ -95,7 +98,7 @@ int		count_bottom(t_stack *first, t_stack *cur)
 	return (count);
 }
 
-void	rotate_max_to_top(t_stack **a)
+void	rotate_max_to_top(t_stack **a, t_opcodes *opcodes)
 {
 	int	nrot;
 	int	i;
@@ -105,8 +108,9 @@ void	rotate_max_to_top(t_stack **a)
 	while (i < nrot)
 	{
 		op_rotate(a);
-		printf(RA);
-		printf("\n");
+	//	printf(RA);
+		add_opcode(opcodes, "ra\n");
+	//	printf("\n");
 		i++;
 	}
 }
@@ -144,7 +148,7 @@ void	solve(t_stack **a, t_stack **b)
 	op_push(b, a);
 	opcodes.i = 0;
 	add_opcode(&opcodes, "pb\n");
-	printf("pb\n");
+	//printf("pb\n");
 	while (*a)
 	{
 		init_next_op(*a, *b, &next_op);
@@ -153,15 +157,16 @@ void	solve(t_stack **a, t_stack **b)
 		next_op.no_top_b = count_top(*b, next_op.cur_b);
 		next_op.no_bottom_a = next_op.size_a - next_op.no_top_a - 1;
 		next_op.no_bottom_b = next_op.size_b - next_op.no_top_b - 1;
-		exec_next_op(a, b, next_op); // remove one element from a
+		exec_next_op(a, b, next_op, &opcodes); // remove one element from a
 	}
 	while (*b)
 	{
 		op_push(a, b);
-		printf("pa\n");
+		add_opcode(&opcodes, "pa\n");
+	//	printf("pa\n");
 	}
-	rotate_max_to_top(a);
-	ft_printf("----\n");
+	rotate_max_to_top(a, &opcodes);
+	//ft_printf("----\n");
 	ft_printf("%s", opcodes.buf);
 	
 }
@@ -176,7 +181,9 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (!(a = read_input(ac, av)))
 		return (0);
+	if (is_sorted(a))
+		return (0);
 	solve(&a, &b);
-//	print_stack(a);
+	print_stack(a);
 	return (0);
 }

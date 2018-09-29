@@ -49,7 +49,7 @@ int	is_sorted(t_stack *s)
 {
 	if (!s || !(s->next))
 		return (1);
-	if (s->val < s->next->val)
+	if (s->val > s->next->val)
 		return (0);
 	return (is_sorted(s->next));
 }

@@ -107,7 +107,7 @@ t_stack	*read_input(int ac, char **av);
 int	calc_cost(t_next_op *next_op);
 
 /* exec_next_op.c */
-void	exec_next_op(t_stack **a, t_stack **b, t_next_op next_op);
+void	exec_next_op(t_stack **a, t_stack **b, t_next_op next_op, t_opcodes *opcodes);
 
 /* opcodes.c */
 void    add_opcode(t_opcodes *opcodes, char *op);

@@ -7,13 +7,13 @@ t_stack	*read_input(int ac, char **av)
 	int	i;
 
 	a = NULL;
-	i = 1;
-	while (i < ac)
+	i = ac - 1;
+	while (i > 0)
 	{
 		if (is_nan(av[i]) || is_int_overflow(av[i]))
 			exit_error();
 		push(&a, new(atoi(av[i])));
-		i++;
+		i--;
 	}
 	if (has_duplicates(a))
 		exit_error();

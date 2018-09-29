@@ -18,12 +18,11 @@ int	main(int ac, char **av)
 	buffer = NULL;
 	while (get_next_line(0, &buffer))
 	{
-		printf("OPPPPP: %s\n", buffer);
+		
+		
 		execute_op(&a, &b, buffer);
-		printf("stack a:\n");
-		print_stack(a);
-		printf("stack b:\n");
-		print_stack(b);
+		
+		
 		bzero(buffer, ft_strlen(buffer));
 	}
 	if (is_sorted(a) && !b)
