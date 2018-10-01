@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_input.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/01 19:12:30 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/10/01 19:13:06 by fwutschk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 t_stack	*read_input(int ac, char **av)
 {
-	t_stack	*a;		
-	int	i;
+	t_stack	*a;
+	int		i;
 
 	a = NULL;
 	i = ac - 1;
@@ -19,4 +30,3 @@ t_stack	*read_input(int ac, char **av)
 		exit_error();
 	return (a);
 }
-

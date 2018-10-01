@@ -6,7 +6,7 @@
 #    By: wutschkef <fwutschk@student.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/19 16:01:19 by wutschkef         #+#    #+#              #
-#    Updated: 2018/07/10 08:02:24 by wutschkef        ###   ########.fr        #
+#    Updated: 2018/10/01 19:47:10 by fwutschk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,7 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 	printf/char_handler.c \
 	printf/pf_atoi.c \
 	printf/pf_itoa.c \
-	printf/pf_num.c \
-	circular_doubly_linked_list.c
-
+	printf/pf_num.c
 
 OBJS = $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 

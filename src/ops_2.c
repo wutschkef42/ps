@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/01 19:12:04 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/10/01 19:12:17 by fwutschk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* last element becomes first */
 void	op_rev_rotate(t_stack **a)
 {
 	t_stack *bottom;
@@ -11,7 +21,6 @@ void	op_rev_rotate(t_stack **a)
 	bottom = *a;
 	while (bottom->next->next)
 	{
-		
 		bottom = bottom->next;
 	}
 	bottom->next->next = *a;
@@ -19,7 +28,6 @@ void	op_rev_rotate(t_stack **a)
 	bottom->next = NULL;
 }
 
-/* last element becomes first */
 void	op_rev_rotate_both(t_stack **a, t_stack **b)
 {
 	op_rev_rotate(a);

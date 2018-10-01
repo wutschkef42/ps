@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   util2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 18:31:34 by fwutschk          #+#    #+#             */
-/*   Updated: 2018/10/01 19:27:25 by fwutschk         ###   ########.fr       */
+/*   Created: 2018/10/01 19:19:43 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/10/01 19:23:24 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "get_next_line.h"
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	exit_error(void)
 {
-	char	*buffer;
-	t_stack	*a;
-	t_stack	*b;
-
-	b = NULL;
-	if (!(a = read_input(ac, av)))
-		return (0);
-	buffer = NULL;
-	while (get_next_line(0, &buffer))
-	{
-		execute_op_wrapper_lol(&a, &b, buffer);
-		bzero(buffer, ft_strlen(buffer));
-	}
-	if (is_sorted(a) && !b)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
-	return (0);
+	ft_printf("Error\n");
+	exit(1);
 }

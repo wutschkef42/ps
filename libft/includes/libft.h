@@ -6,7 +6,7 @@
 /*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 00:34:25 by fwutschk          #+#    #+#             */
-/*   Updated: 2017/12/30 09:51:37 by wutschkef        ###   ########.fr       */
+/*   Updated: 2018/10/01 19:42:34 by fwutschk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ void			ft_lstpushback(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstrev(t_list **lst);
-
-
 char			*ft_tolower_str(char *s);
 
 uintmax_t		ft_abs(intmax_t n);

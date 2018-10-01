@@ -1,28 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_op.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/01 19:06:53 by fwutschk          #+#    #+#             */
+/*   Updated: 2018/10/01 19:33:19 by fwutschk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "push_swap.h"
 
 int		has_trailing_spaces(char *buffer)
 {
-	// if op code has 2 chars we are good
 	if (ft_strlen(buffer) == 2)
 		return (1);
-	// if opcode has 3 chars, it must be rra rrb or rrr
 	if (ft_strlen(buffer) == 3)
 		if (ft_strncmp(buffer, "rra", 3) == 0
-			|| ft_strncmp(buffer, "rrb", 3) == 0
-			|| ft_strncmp(buffer, "rrr", 3) == 0)
+				|| ft_strncmp(buffer, "rrb", 3) == 0
+				|| ft_strncmp(buffer, "rrr", 3) == 0)
 			return (1);
-	// if opcode has more than 3 chars there is an error
 	return (0);
 }
 
-
 void	execute_op(t_stack **a, t_stack **b, char *buffer)
 {
-	printf("%s\n", buffer);
-	if (has_trailing_spaces(buffer) == 0)
-		exit_error();
-	else if (strncmp(buffer, SA, 2) == 0)
+	if (strncmp(buffer, SA, 2) == 0)
 		op_swap(*a);
 	else if (strncmp(buffer, SB, 2) == 0)
 		op_swap(*b);
@@ -46,4 +51,11 @@ void	execute_op(t_stack **a, t_stack **b, char *buffer)
 		op_rev_rotate_both(a, b);
 	else
 		exit_error();
+}
+
+void	execute_op_wrapper_lol(t_stack **a, t_stack **b, char *buffer)
+{
+	if (has_trailing_spaces(buffer) == 0)
+		exit_error();
+	execute_op(a, b, buffer);
 }

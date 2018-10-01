@@ -20,7 +20,9 @@ INC_DIR			= ./includes
 # src / obj files
 
 SRC_SHARED	= stack.c \
+			  	stack2.c \
 				util.c \
+				util2.c \
 				exec_op.c \
 				ops_1.c \
 				ops_2.c \
