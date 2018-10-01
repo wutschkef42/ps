@@ -1,5 +1,4 @@
-
-checker
-push_swap
+./push_swap
+./checker
 obj/
 libft/libft.a
