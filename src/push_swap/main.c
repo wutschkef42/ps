@@ -26,5 +26,7 @@ int				main(int ac, char **av)
 		bruteforce(&a, &b);
 	else
 		solve(&a, &b);
+	free_stack(a);
+	free_stack(b);
 	return (0);
 }

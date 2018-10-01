@@ -12,8 +12,26 @@
 
 #include "push_swap.h"
 
+
+/*
+** brute force small stacks ... because yallah
+** stacks with <= 6 elements can be brute forced.
+** there are 12 operations in total,
+** so 6^12 = 2 billion possibilities
+**
+** backtracking approach
+**
+*/
+
 void	bruteforce(t_stack **a, t_stack **b)
 {
-	(void)a;
-	(void)b;
+		if ()
 }
+
+
+void	solve_bruteforce(t_stack **a, t_stack **b, int n, int n_max)
+{
+	
+}
+
+// call solve_bruteforce(a, b, 0, 12)

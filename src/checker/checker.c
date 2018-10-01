@@ -33,5 +33,7 @@ int	main(int ac, char **av)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	free_stack(a);
+	free_stack(b);
 	return (0);
 }
