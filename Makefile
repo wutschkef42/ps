@@ -32,6 +32,8 @@ SRC_PS		= push_swap.c \
 				calc_cost.c \
 				exec_next_op.c \
 				opcodes.c \
+				tools.c \
+				main.c \
 				bruteforce.c
 			  
 

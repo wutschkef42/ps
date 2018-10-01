@@ -1,9 +1,8 @@
 
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
+#include "libft.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -28,7 +27,7 @@
 
 #define VAL(x)	x->val
 
-enum				e_strategy
+enum			e_strategy
 {
 	UPUP = 1,
 	UPDOWN,
@@ -59,7 +58,6 @@ typedef struct	s_next_op
 	int		cost;
 }				t_next_op;
 
-
 typedef struct 	s_opcodes
 {
 	char	buf[BUFSIZE];
@@ -67,7 +65,6 @@ typedef struct 	s_opcodes
 }				t_opcodes;
 
 /* stack.c */
-
 t_stack	*new(int val);
 void	push(t_stack **stack, t_stack *new);
 t_stack	*pop(t_stack **stack);
@@ -82,6 +79,7 @@ int		is_nan(char *s);
 int		is_int_overflow(char *s);
 int		has_duplicates(t_stack *s);
 int		max(int a, int b);
+int		min(int a, int b);
 
 /* exec_op.c */
 void	execute_op(t_stack **a, t_stack **b, char *buffer);
@@ -99,6 +97,13 @@ void	op_rotate_both(t_stack **a, t_stack **b);
 void	op_rev_rotate(t_stack **a);
 void	op_rev_rotate_both(t_stack **a, t_stack **b);
 
+/* tools.c */
+
+int				count_bottom(t_stack *first, t_stack *cur);
+int				count_top(t_stack *first, t_stack *cur);
+t_stack			*get_min_a(t_stack **a);
+t_stack			*get_max_b(t_stack **b, int to_insert);
+t_stack			*get_index_b(t_stack **b, int val);
 
 /* read_input.c */
 t_stack	*read_input(int ac, char **av);
@@ -108,6 +113,7 @@ int	calc_cost(t_next_op *next_op);
 
 /* exec_next_op.c */
 void	exec_next_op(t_stack **a, t_stack **b, t_next_op next_op, t_opcodes *opcodes);
+void			solve(t_stack **a, t_stack **b);
 
 /* opcodes.c */
 void    add_opcode(t_opcodes *opcodes, char *op);
