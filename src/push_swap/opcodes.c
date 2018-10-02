@@ -20,6 +20,19 @@ void	add_opcode(t_opcodes *opc, char *code)
 		opc->i = 0;
 		bzero(opc->buf, BUFSIZE);
 	}
-	ft_memccpy(&(opc->buf[opc->i]), code, 0, max(ft_strlen(code), BUFSIZE);
+	ft_memccpy(&(opc->buf[opc->i]), code, 0, max(ft_strlen(code), BUFSIZE));
 	opc->i += ft_strlen(code);
+}
+
+void	pop_opcode(t_opcodes *opc)
+{
+	int	i;
+
+	i = opc->i - 1;
+	while (i >= 0 && opc->buf[i] != '\n')
+	{
+		opc->buf[i] = '\0';
+		i--;
+	}
+	i++;
 }

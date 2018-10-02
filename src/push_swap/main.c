@@ -28,5 +28,6 @@ int				main(int ac, char **av)
 		solve(&a, &b);
 	free_stack(a);
 	free_stack(b);
+	while (1);
 	return (0);
 }

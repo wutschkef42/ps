@@ -26,10 +26,10 @@ SRC_SHARED	= stack.c \
 				exec_op.c \
 				ops_1.c \
 				ops_2.c \
-				read_input.c
-
-SRC_CHECKER	= checker.c \
+				read_input.c \
 				free_stuff.c
+
+SRC_CHECKER	= checker.c
 
 SRC_PS		= push_swap.c \
 				calc_cost.c \

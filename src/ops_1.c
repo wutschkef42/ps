@@ -16,6 +16,8 @@ void	op_swap(t_stack *a)
 {
 	int	tmp;
 
+	if (!a)
+		return ;
 	if (a->next)
 	{
 		tmp = a->val;
