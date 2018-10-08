@@ -6,7 +6,7 @@
 /*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 19:28:26 by fwutschk          #+#    #+#             */
-/*   Updated: 2018/10/01 19:28:30 by fwutschk         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:46:06 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int				main(int ac, char **av)
 		solve(&a, &b);
 	free_stack(a);
 	free_stack(b);
-	while (1);
 	return (0);
 }

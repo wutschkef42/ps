@@ -6,7 +6,7 @@
 /*   By: fwutschk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 19:19:25 by fwutschk          #+#    #+#             */
-/*   Updated: 2018/10/01 19:21:39 by fwutschk         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:49:54 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ int	is_int_overflow(char *s)
 int	has_duplicates(t_stack *s)
 {
 	t_stack *p;
+	t_stack *b;
 
 	if (!s)
 		return (0);
 	p = s;
+	b = s;
 	while (p)
 	{
+		s = b;
 		while (s)
 		{
 			if (p != s && p->val == s->val)
