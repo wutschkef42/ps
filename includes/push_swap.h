@@ -119,6 +119,7 @@ void				exec_next_op(t_stack **a, t_stack **b, t_next_op next_op,
 						t_opcodes *opcodes);
 void				solve(t_stack **a, t_stack **b);
 void				add_opcode(t_opcodes *opcodes, char *op);
+void				add_opcode2(t_opcodes *opc, char *code);
 void				pop_opcode(t_opcodes *opc);
 void				bruteforce(t_stack **a, t_stack **b);
 void				free_stack(t_stack *s);

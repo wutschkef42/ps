@@ -48,37 +48,70 @@ t_op_assoc	get_op(int i)
 static int	backtracking(t_stack **a, t_stack **b, t_bt *vars, t_opcodes *opc)
 {
 	int			i;
+	int			push_had_effect;
 	t_op_assoc	op_pair;
 
-	if (vars->depth == vars->max_depth)
-		return (0);	
-	if (is_sorted(*a) && is_sorted(*b))
-		return (1);
-	i = 0;
-	while (1)
+	
+	if (vars->depth >= vars->max_depth)
 	{
+//		ft_printf("hamdullah\n");
+		return (0);	
+	}
+	if (is_sorted(*a) && stack_size(*b) == 0)
+	{
+		ft_printf("buf: %s\n", opc->buf);
+		print_stack(*a);
+		print_stack(*b);
+		return (1);
+	}
+	i = 0;
+	while (i <= 10)
+	{
+		push_had_effect = 0;
 
 		// if i == 11 (last operation has been tried) break
-		if (i == 11)
-			break ;
+		//if (i >= 11)
+		//	break ;
 		// get i-th operation
 		op_pair = get_op(i);
 		
 		// apply i-th op and add it to opc
-		ft_printf("op: %s\n", op_pair.op);
+		//ft_printf("op: %s\n", op_pair.op);
+		//ft_printf("i: %d\n", i);
+		//t_printf("opc i: %d\n", opc->i);
+		if (i == 3 && stack_size(*b) > 0)
+		{
+	//		ft_printf("CLACK A\n");
+			push_had_effect = 1;
+		}
+	//	ft_printf("i: %d\n", i);
 		execute_op_wrapper_lol(a, b, op_pair.op);
 		
-		add_opcode(opc, op_pair.op);
-		
+		add_opcode2(opc, op_pair.op);
+	//	ft_printf("buf: %s\n", opc->buf);
 		vars->depth += 1;
+	//	ft_printf("depth: %d\n", vars->depth);
+	//	ft_printf("max depth: %d\n", vars->max_depth);
 		
 		if (backtracking(a, b, vars, opc))
 				return (1);
 		// undo i-th op and delete it from opc
 		
-		execute_op_wrapper_lol(a, b, op_pair.rev_op);
+	//	ft_printf("UNDO: ");
+		if (i != 3)
+		{
+			execute_op_wrapper_lol(a, b, op_pair.rev_op);
+		}
+		else if (push_had_effect)
+			execute_op_wrapper_lol(a, b, op_pair.rev_op);
+
+		//ft_printf("i: %d\n", i);
 		pop_opcode(opc);
+		vars->depth -= 1;
+	//	ft_printf("buf after pop hamdulah: %s\n", opc->buf);
+	//	ft_printf("opc i after pop hamdulah: %d\n", opc->i);
 		i++;
+	//	ft_printf("inshallah\n");
 	}
 	return (0);
 }
@@ -98,6 +131,7 @@ void	bruteforce(t_stack **a, t_stack **b)
 		if (backtracking(a, b, &vars, &opc))
 		{
 			ft_printf("%s", opc.buf);
+	//`		ft_printf("ALLAHUAKBAR\n");
 			return ;
 		}
 		vars.max_depth += 1;
