@@ -54,14 +54,11 @@ static int	backtracking(t_stack **a, t_stack **b, t_bt *vars, t_opcodes *opc)
 	
 	if (vars->depth >= vars->max_depth)
 	{
-//		ft_printf("hamdullah\n");
 		return (0);	
 	}
 	if (is_sorted(*a) && stack_size(*b) == 0)
 	{
-		ft_printf("buf: %s\n", opc->buf);
-		print_stack(*a);
-		print_stack(*b);
+	
 		return (1);
 	}
 	i = 0;
