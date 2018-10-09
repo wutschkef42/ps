@@ -28,6 +28,7 @@ int	main(int ac, char **av)
 	{
 		execute_op_wrapper_lol(&a, &b, buffer);
 		ft_bzero(buffer, ft_strlen(buffer));
+		free(buffer);
 	}
 	if (is_sorted(a) && !b)
 		ft_printf("OK\n");
