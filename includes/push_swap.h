@@ -118,4 +118,5 @@ void				add_opcode2(t_opcodes *opc, char *code);
 void				pop_opcode(t_opcodes *opc);
 void				bruteforce(t_stack **a, t_stack **b);
 void				free_stack(t_stack *s);
+void				free_tab(char **tab);
 #endif
