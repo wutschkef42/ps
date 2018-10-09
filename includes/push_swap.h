@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include <stdlib.h>
-# include <string.h>
 
 # define INT_MAX	2147483647
 # define INT_MIN	-214783648
@@ -70,7 +69,6 @@ typedef struct		s_opcodes
 	int				i;
 }					t_opcodes;
 
-
 typedef struct		s_bt
 {
 	int				depth;
@@ -84,16 +82,13 @@ typedef struct		s_op_assoc
 
 }					t_op_assoc;
 
-
-
-
 t_stack				*new(int val);
 void				push(t_stack **stack, t_stack *new);
 t_stack				*pop(t_stack **stack);
 void				print_stack(t_stack *s);
 int					is_sorted(t_stack *s);
 int					stack_size(t_stack *s);
-void				exit_error();
+void				exit_error(t_stack *a, t_stack *b);
 int					is_nan(char *s);
 int					is_int_overflow(char *s);
 int					has_duplicates(t_stack *s);

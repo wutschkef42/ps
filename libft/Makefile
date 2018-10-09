@@ -60,7 +60,7 @@ obj:
 	mkdir -p $(PFDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) -I $(INCDIR) -o $@ -c $<
+	$(CC) $(CFLAGS) -I $(INCDIR) -o $@ -c $<
 
 $(NAME): $(OBJS) $(OBJDIR)
 	ar -rcs $(NAME) $(OBJS)

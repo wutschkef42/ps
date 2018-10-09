@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 	while (get_next_line(0, &buffer))
 	{
 		execute_op_wrapper_lol(&a, &b, buffer);
-		bzero(buffer, ft_strlen(buffer));
+		ft_bzero(buffer, ft_strlen(buffer));
 	}
 	if (is_sorted(a) && !b)
 		ft_printf("OK\n");

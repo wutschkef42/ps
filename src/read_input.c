@@ -23,13 +23,16 @@ t_stack	*read_input(int ac, char **av)
 	{
 		if (is_nan(av[i]) || is_int_overflow(av[i]))
 		{
-			free_stack(a);
-			exit_error();
+			ft_printf("a: %s\n", av[i]);
+			exit_error(a, NULL);
 		}
-		push(&a, new(atoi(av[i])));
+		push(&a, new(ft_atoi(av[i])));
 		i--;
 	}
 	if (has_duplicates(a))
-		exit_error();
+	{
+		ft_printf("b\n");
+		exit_error(a, NULL);
+	}
 	return (a);
 }

@@ -27,47 +27,37 @@ int		has_trailing_spaces(char *buffer)
 
 void	execute_op(t_stack **a, t_stack **b, char *buffer)
 {
-	if (strncmp(buffer, SA, 2) == 0)
+	if (ft_strncmp(buffer, SA, 2) == 0)
 		op_swap(*a);
-	else if (strncmp(buffer, SB, 2) == 0)
+	else if (ft_strncmp(buffer, SB, 2) == 0)
 		op_swap(*b);
-	else if (strncmp(buffer, SS, 2) == 0)
+	else if (ft_strncmp(buffer, SS, 2) == 0)
 		op_swap_both(*a, *b);
-	else if (strncmp(buffer, PA, 2) == 0)
+	else if (ft_strncmp(buffer, PA, 2) == 0)
 		op_push(a, b);
-	else if (strncmp(buffer, PB, 2) == 0)
+	else if (ft_strncmp(buffer, PB, 2) == 0)
 		op_push(b, a);
-	else if (strncmp(buffer, RA, 2) == 0)
+	else if (ft_strncmp(buffer, RA, 2) == 0)
 		op_rotate(a);
-	else if (strncmp(buffer, RB, 2) == 0)
+	else if (ft_strncmp(buffer, RB, 2) == 0)
 		op_rotate(b);
-	else if (strncmp(buffer, RR, 3) == 0)
+	else if (ft_strncmp(buffer, RR, 3) == 0)
 		op_rotate_both(a, b);
-	else if (strncmp(buffer, RRA, 3) == 0)
+	else if (ft_strncmp(buffer, RRA, 3) == 0)
 		op_rev_rotate(a);
-	else if (strncmp(buffer, RRB, 3) == 0)
+	else if (ft_strncmp(buffer, RRB, 3) == 0)
 		op_rev_rotate(b);
-	else if (strncmp(buffer, RRR, 3) == 0)
+	else if (ft_strncmp(buffer, RRR, 3) == 0)
 		op_rev_rotate_both(a, b);
 	else
-		exit_error();
+		exit_error(*a, *b);
 }
 
 void	execute_op_wrapper_lol(t_stack **a, t_stack **b, char *buffer)
 {
-//	ft_printf("op to be done: %s\n", buffer);
-
-//	ft_printf("before op:\n");
-//	print_stack(*a);
-//	print_stack(*b);
 	if (!buffer)
 		return ;
 	if (has_trailing_spaces(buffer) == 0)
-		exit_error();
+		exit_error(*a, *b);
 	execute_op(a, b, buffer);
-
-//	ft_printf("after op:\n");
-//	print_stack(*a);
-//	print_stack(*b);
-
 }

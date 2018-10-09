@@ -14,7 +14,6 @@
 # define LIBFT_H
 
 # include <unistd.h>
-# include <string.h>
 # include <stdlib.h>
 
 # define HEXTABLE(x) "0123456789ABCDEF"[x]
