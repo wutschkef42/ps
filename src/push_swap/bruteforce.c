@@ -58,7 +58,7 @@ static int	backtracking(t_stack **a, t_stack **b, t_bt *vars, t_opcodes *opc)
 	}
 	if (is_sorted(*a) && stack_size(*b) == 0)
 	{
-	
+		//ft_printf("what\n");	
 		return (1);
 	}
 	i = 0;
@@ -76,10 +76,14 @@ static int	backtracking(t_stack **a, t_stack **b, t_bt *vars, t_opcodes *opc)
 		//ft_printf("op: %s\n", op_pair.op);
 		//ft_printf("i: %d\n", i);
 		//t_printf("opc i: %d\n", opc->i);
-		if (i == 3 && stack_size(*b) > 0)
+		if (i == 3 && stack_size(*b) == 0)
 		{
 	//		ft_printf("CLACK A\n");
-			push_had_effect = 1;
+			op_pair.rev_op = NULL;
+		}
+		if (i == 4 && stack_size(*a) == 0)
+		{
+			op_pair.rev_op = NULL;
 		}
 	//	ft_printf("i: %d\n", i);
 		execute_op_wrapper_lol(a, b, op_pair.op);
@@ -95,12 +99,12 @@ static int	backtracking(t_stack **a, t_stack **b, t_bt *vars, t_opcodes *opc)
 		// undo i-th op and delete it from opc
 		
 	//	ft_printf("UNDO: ");
-		if (i != 3)
-		{
-			execute_op_wrapper_lol(a, b, op_pair.rev_op);
-		}
-		else if (push_had_effect)
-			execute_op_wrapper_lol(a, b, op_pair.rev_op);
+	//	if (i != 3)
+//		{
+		execute_op_wrapper_lol(a, b, op_pair.rev_op);
+	//	}
+	//	else if (push_had_effect)
+		//	execute_op_wrapper_lol(a, b, op_pair.rev_op);
 
 		//ft_printf("i: %d\n", i);
 		pop_opcode(opc);

@@ -60,6 +60,8 @@ void	execute_op_wrapper_lol(t_stack **a, t_stack **b, char *buffer)
 //	ft_printf("before op:\n");
 //	print_stack(*a);
 //	print_stack(*b);
+	if (!buffer)
+		return ;
 	if (has_trailing_spaces(buffer) == 0)
 		exit_error();
 	execute_op(a, b, buffer);

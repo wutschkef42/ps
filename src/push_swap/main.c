@@ -22,7 +22,7 @@ int				main(int ac, char **av)
 		return (0);
 	if (is_sorted(a))
 		return (0);
-	if (stack_size(a) < 7)
+	if (stack_size(a) < 6)
 		bruteforce(&a, &b);
 	else
 		solve(&a, &b);

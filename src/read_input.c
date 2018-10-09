@@ -22,7 +22,10 @@ t_stack	*read_input(int ac, char **av)
 	while (i > 0)
 	{
 		if (is_nan(av[i]) || is_int_overflow(av[i]))
+		{
+			free_stack(a);
 			exit_error();
+		}
 		push(&a, new(atoi(av[i])));
 		i--;
 	}
